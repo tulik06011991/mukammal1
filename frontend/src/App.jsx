@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <Navbar/>
-    <h1 className='bg-blue-800'>salom</h1>
+   <h1 className='bg-gray-500'>fdfdfd</h1>
     
     </>
   )
