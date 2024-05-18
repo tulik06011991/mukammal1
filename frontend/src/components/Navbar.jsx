@@ -37,7 +37,7 @@ const App = () => {
           >
             <i className="bx bx-menu"></i>
           </button>
-          <div>Logo</div>
+          <div>Tolqin</div>
         </div>
 
 
