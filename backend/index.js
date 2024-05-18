@@ -7,6 +7,7 @@ app.get('/', (req, res) =>{
     res.send('hello worlds')
 })
 
-PORT = process.env.PORT || 8000
-
-app.listen(PORT, console.log(`server running on port : ${PORT}`))
+PORT = process.env.PORT || 3000; // yoki boshqa yuqori raqam
+app.listen(PORT, () => {
+    console.log(`Server portda ishlayapti: ${PORT}`);
+});
