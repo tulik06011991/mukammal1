@@ -1,85 +1,174 @@
-import React from 'react'
-import '../App.css'
+import React, { useState, useEffect, useRef } from 'react';
+import 'tailwindcss/tailwind.css';
 
 
-const Navbar = () => {
+const App = () => {
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [asideOpen, setAsideOpen] = useState(true);
+  const profileRef = useRef();
+
+  const handleOutsideClick = (e) => {
+    if (profileRef.current && !profileRef.current.contains(e.target)) {
+      setProfileOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (profileOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [profileOpen]);
+
   return (
-    <>
-    
+
+    <main className="min-h-screen w-full bg-gray-100 text-gray-700">
+      <header className="flex w-full items-center justify-between border-b-2 border-gray-200 bg-white p-2">
+        <div className="flex items-center space-x-2">
+          <button
+            type="button"
+            className="text-3xl"
+            onClick={() => setAsideOpen(!asideOpen)}
+          >
+            <i className="bx bx-menu"></i>
+          </button>
+          <div>Logo</div>
+        </div>
 
 
-<div class="flex flex-wrap place-items-center h-screen">
-  <section class="relative mx-auto">
-    
-    <nav class="flex justify-between bg-gray-900 text-white w-screen">
-      <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-        <a class="text-3xl font-bold font-heading" href="#">
-           <img class="h-9" src="logo.png" alt="logo"/> 
-          Logo Here.
-        </a>
-     
-        <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-          <li><a class="hover:text-gray-200" href="#">Home</a></li>
-          <li><a class="hover:text-gray-200" href="#">Catagory</a></li>
-          <li><a class="hover:text-gray-200" href="#">Collections</a></li>
-          <li><a class="hover:text-gray-200" href="#">Contact Us</a></li>
-        </ul>
-      
-        <div class="hidden xl:flex items-center space-x-5 items-center">
-          <a class="hover:text-gray-200" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </a>
-          <a class="flex items-center hover:text-gray-200" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            <span class="flex absolute -mt-5 ml-4">
-              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-                </span>
+        <div>
+          <button
+            type="button"
+            onClick={() => setProfileOpen(!profileOpen)}
+            className="h-9 w-9 overflow-hidden rounded-full"
+          >
+            <img src="https://plchldr.co/i/40x40?bg=111111" alt="profile" />
+          </button>
+
+          {profileOpen && (
+            <div
+              ref={profileRef}
+              className="absolute right-2 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md"
+            >
+              <div className="flex items-center space-x-2 p-2">
+                <img
+                  src="https://plchldr.co/i/40x40?bg=111111"
+                  alt="profile"
+                  className="h-9 w-9 rounded-full"
+                />
+                <div className="font-medium">Hafiz Haziq</div>
+              </div>
+
+              <div className="flex flex-col space-y-3 p-2">
+                <a href="#" className="transition hover:text-blue-600">
+                  My Profile
+                </a>
+                <a href="#" className="transition hover:text-blue-600">
+                  Edit Profile
+                </a>
+                <a href="#" className="transition hover:text-blue-600">
+                  Settings
+                </a>
+              </div>
+
+              <div className="p-2">
+                <button className="flex items-center space-x-2 transition hover:text-blue-600">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    ></path>
+                  </svg>
+                  <div>Log Out</div>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+
+      <div className="flex">
+        {asideOpen && (
+          <aside
+            className="flex w-72 flex-col space-y-2 border-r-2 border-gray-200 bg-gray-700 p-2"
+            style={{ height: '90.5vh' }}
+          >
+            <a
+              href="#"
+              className="flex items-center text-white space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600"
+            >
+              <span className="text-2xl">
+                <i className="bx bx-home"></i>
               </span>
-          </a>
-         
-          <a class="flex items-center hover:text-gray-200" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-          </a>
-          
+              <span>Dashboard</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center text-white space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600"
+            >
+              <span className="text-2xl">
+                <i className="bx bx-cart"></i>
+              </span>
+              <span>Cart</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center text-white space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600"
+            >
+              <span className="text-2xl">
+                <i className="bx bx-shopping-bag"></i>
+              </span>
+              <span>Shopping</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center text-white space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600"
+            >
+              <span className="text-2xl">
+                <i className="bx bx-heart"></i>
+              </span>
+              <span>My Favourite</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center text-white space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600"
+            >
+              <span className="text-2xl">
+                <i className="bx bx-user"></i>
+              </span>
+              <span>Profile</span>
+            </a>
+          </aside>
+        )}
+
+        <div className="w-full p-4">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
+          quam odit officiis magni doloribus ipsa dolore, dolores nihil
+          accusantium labore, incidunt autem iure quae vitae voluptate, esse
+          asperiores aliquam repellat. Harum aliquid non officiis porro at
+          cumque eaque inventore iure. Modi sunt optio mollitia repellat sed ab
+          quibusdam quos harum!
         </div>
       </div>
+    </main>
+  );
+};
 
-      <a class="xl:hidden flex mr-6 items-center" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-        <span class="flex absolute -mt-5 ml-4">
-          <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
-          </span>
-        </span>
-      </a>
-      <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-      </a>
-    </nav>
-    
-  </section>
-</div>
-
-<div class="absolute bottom-0 right-0 mb-4 mr-4 z-10">
-    <div>
-        <a title="Follow me on twitter" href="https://www.twitter.com/asad_codes" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
-            <img class="object-cover object-center w-full h-full rounded-full" src="https://www.imore.com/sites/imore.com/files/styles/large/public/field/image/2019/12/twitter-logo.jpg"/>
-        </a>
-    </div>
-</div>
-    </>
-  )
-}
-
-export default Navbar
+export default App;
