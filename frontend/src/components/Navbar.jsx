@@ -29,7 +29,7 @@ const App = () => {
 
     <main className="min-h-screen w-full bg-gray-100 text-gray-700">
       <header className="flex w-full items-center justify-between border-b-2 border-gray-200 bg-white p-2">
-        <div className="flex items-center space-x-2">
+        <div className="flex  items-center space-x-2 ">
           <button
             type="button"
             className="text-3xl"
@@ -37,7 +37,7 @@ const App = () => {
           >
             <i className="bx bx-menu"></i>
           </button>
-          <div>Tolqin</div>
+          <div className='font-bold ml-8'>ONLINE SHOP</div>
         </div>
 
 
@@ -61,7 +61,7 @@ const App = () => {
                   alt="profile"
                   className="h-9 w-9 rounded-full"
                 />
-                <div className="font-medium">Hafiz Haziq</div>
+                <div className="font-medium">Mirsaliyev To'lqin</div>
               </div>
 
               <div className="flex flex-col space-y-3 p-2">
