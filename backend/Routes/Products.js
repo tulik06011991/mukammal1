@@ -1,10 +1,10 @@
 const expres = require('express')
-const {AllProducts, postProducts} = require('../Controller/Products')
+const {AllProducts, PostProducts} = require('../Controller/Products')
 
 const router = expres.Router();
 
 router.get('/products', AllProducts);
-router.post('/postProducts', postProducts)
+router.post('/postProducts', PostProducts)
 
 
 
