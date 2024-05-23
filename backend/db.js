@@ -1,22 +1,23 @@
-const { Pool } = require('pg');
+const { Pool, Client } = require('pg');
 
 const pool = new Pool({
-  user: 'postgres',  // foydalanuvchi nomi
-  host: 'localhost', // server manzili
-  database: 'mydatabase', // ma'lumotlar bazasi nomi
-  password: 'password', // foydalanuvchi paroli
+  user: process.env.DB_USERNAME,  // foydalanuvchi nomi
+  host: process.env.DB_HOST, // server manzili
+  database: process.env.DB_NAME, // ma'lumotlar bazasi nomi
+  password: process.env.DB_PASSWORD, // foydalanuvchi paroli
   port: 5432, // port raqami, odatda 5432
 });
 
 // Ba'zi SQL so'rovlarni bajaring
-async function getUsers() {
-  const client = await pool.connect();
-  try {
-    const result = await client.query('SELECT * FROM users');
-    return result.rows;
-  } finally {
-    client.release();
+pool.connect((error, client, release) => {
+  if (error) {
+    console.log(`Databazaga ulanmadi`);
+  } else {
+    console.log(`Databazaga ulandi`);
+    release();
   }
-}
+});
 
+
+module.exports = pool
 // ... qolgan kodlar
