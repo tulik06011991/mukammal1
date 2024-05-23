@@ -36,7 +36,7 @@ const updateUsers = async (req, res) =>{
             [username, email, password, id]
         );
         res.status(201).json(updateUser.rows);
-        if(updateUser.rows.length ===0){
+        if(updateUser.rowCount ===0){
             res.status(404).json(` ma'lumot sozlanmadi`)
         }
         
