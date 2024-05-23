@@ -1,18 +1,20 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'your_database_user',
-  host: 'your_database_host',
-  database: 'your_database_name',
-  password: 'your_database_password',
+  user: 'postgres',      // Correct key
+  host: 'localhost',
   port: 5432,
+  password: 'baliq',     // Remove 'username' and ensure the other keys are correct
+  database: 'postgres' // Add the database name if necessary
 });
 
 // Pool ulanishini tekshirish
 pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Error acquiring client', err.stack);
-  }
-  console.log('Connected to the database');
-  release();
-});
+    if (err) {
+      return console.log('Databazaga ulanmadi', err.stack);
+    }
+    console.log('Databaza ishladi');
+    release();
+  });
+
+module.exports = pool;
