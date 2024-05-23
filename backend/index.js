@@ -2,7 +2,8 @@ const express = require('express')
 const app = express();
 require('dotenv').config()
 const cors =require('cors')
-const AllProducts = require('./Routes/Products')
+const AllProducts = require('./Routes/Products');
+const PostUsers = require('./Routes/Users')
 
 
 app.get('/', (req, res) =>{
@@ -11,7 +12,8 @@ app.get('/', (req, res) =>{
 
 app.use(express.json())
 app.use(cors());
-app.use('/', AllProducts)
+app.use('/', AllProducts);
+app.use('/', PostUsers)
 
 
 
