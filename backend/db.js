@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
+
   user: 'postgres',  // foydalanuvchi nomi
   host: 'localhost' , // server manzili
   database: 'postgres', // ma'lumotlar bazasi nomi
@@ -9,24 +10,16 @@ const pool = new Pool({
 });
 
 // Ba'zi SQL so'rovlarni bajaring
-pool.connect((error, client, release) => {
-  if (error) {
-    console.error('Databazaga ulanmadi', error.stack);
-  } else {
-    console.log('Databazaga ulandi');
-    
-    // SQL so'rovlarni bajaring
-    client.query('SELECT NOW()', (err, res) => {
-      release();
-      
-      if (err) {
-        console.error('So\'rov bajarishda xatolik', err.stack);
-      } else {
-        console.log('So\'rov natijasi:', res.rows);
-      }
-    });
-  }
-});
 
-module.exports = pool
-// ... qolgan kodlar
+
+// Pool ulanishini tekshirish
+pool.connect((err, client, release) => {
+    if (err) {
+      return console.log('Databazaga ulanmadi', err.stack);
+    }
+    console.log('Databaza ishladi');
+    release();
+  });
+
+module.exports = pool;
+
