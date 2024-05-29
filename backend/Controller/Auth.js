@@ -20,7 +20,7 @@ const register = async(req,res) =>{
             return sendErrorResponse(res, 401, `Bu emaildan avval ro'yxatdan o'tilgan`);
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await pool.query(`INSERT INTO users (username, email, hashedPassword) VALUES ($1, $2,$3) RETURNING *`, [username, email, hashedPassword]);
+        const newUser = await pool.query(`INSERT INTO users (username, email, password) VALUES ($1, $2,$3) RETURNING *`, [username, email, hashedPassword]);
         res.status(201).json({msg: `Muvaffaqiyatli ro'yxatdan o'tildi`})
 
     } catch (error) {

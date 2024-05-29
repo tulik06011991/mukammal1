@@ -6,7 +6,8 @@ const { Pool } = require('pg');
 const cors= require('cors')
 const  pool = require('./db')
 const AllProducts = require('./Routes/Products');
-const PostUsers = require('./Routes/Users')
+const PostUsers = require('./Routes/Users');
+const Auth = require('./Routes/Auth')
 
 
 
@@ -22,7 +23,7 @@ app.use(express.json())
 app.use(cors());
 app.use('/', AllProducts);
 app.use('/', PostUsers)
-
+app.use('/', Auth)
 
 
 
