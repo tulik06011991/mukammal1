@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db');
 
 const register = async (req, res) => {
-    const { username, email, password, isAdmin } = req.body;
+    const { username, email, password } = req.body;
     
     // Bo'sh inputlarni tekshirish
     if (!username || !password) {
@@ -21,7 +21,7 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         
         // Foydalanuvchini bazaga qo'shamiz
-        const newUser = await pool.query('INSERT INTO users (username, password, is_admin) VALUES ($1, $2, $3) RETURNING *', [username, hashedPassword, isAdmin || false]);
+        const newUser = await pool.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *', [username, hashedPassword, isAdmin || false]);
         
         // Token yaratish va qaytarish
         const token = jwt.sign({ id: newUser.rows[0].id, isAdmin: newUser.rows[0].is_admin }, process.env.JWT_SECRET, { expiresIn: '1h' });
