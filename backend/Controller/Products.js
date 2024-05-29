@@ -1,5 +1,6 @@
 const pool = require('../db');
 
+
 const AllProducts = async (req, res) => {
     try {
         const products = await pool.query('SELECT * FROM products');
@@ -10,8 +11,10 @@ const AllProducts = async (req, res) => {
     }
 };
 
-const PostProducts = async (req, res) => {
+const PostProducts = async  (req, res) => {
     const { name, description, price } = req.body;
+    const filePath = req.file.path;
+    const fileName = req.file.filename;
     
     if (!name || !description || typeof price !== 'number') {
         return res.status(400).send('Invalid input');
