@@ -6,7 +6,7 @@ const register = async (req, res) => {
     const { username, email, password } = req.body;
     
     // Bo'sh inputlarni tekshirish
-    if (!username || !password) {
+    if (!username || !password || !email) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
 
