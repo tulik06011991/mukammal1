@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db');
 
 const register = async (req, res) => {
-    const { username, password, isAdmin } = req.body;
+    const { username, email, password, isAdmin } = req.body;
     
     // Bo'sh inputlarni tekshirish
     if (!username || !password) {
@@ -12,7 +12,7 @@ const register = async (req, res) => {
 
     try {
         // Foydalanuvchi allaqachon mavjudmi tekshiramiz
-        const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [email]);
         if (existingUser.rows.length !== 0) {
             return res.status(400).json({ message: 'User already exists' });
         }
