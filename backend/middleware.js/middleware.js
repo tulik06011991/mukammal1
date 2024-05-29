@@ -11,4 +11,18 @@ const middleware = (req, res, next) =>{
         throw new Error (`xato token`)
         
     }
+};
+
+const checkAdmin = (req, res, next) =>{
+    try {
+        if(req.user && req.user.isAdmin){
+            next()
+        }
+    } catch (error) {
+        throw new Error('siz admin emassiz')
+        
+    }
 }
+
+
+module.exports = {checkAdmin, middleware}
