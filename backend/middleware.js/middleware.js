@@ -25,45 +25,34 @@ const checkAdmin = (req, res, next) => {
 
 
 
+const stroge = multer.diskStorage({
 
+  destination:(req, file, cb) =>{
+    cb(null, './uploads')
+  },
+  filename: (req, file, cb) =>{
+    cb(null, `${Date.now()}-${file.originalname}`)
+  }
+})
 
+const fileFilter = (req, file, cb) =>{
+  const allow = ['image/jpeg', "image/jpg", "image/webp", "image/gif", ];
+  if(allow.includes(file.mimtype)){
+    cb(null, true)
+  }else{
+    cb(new Error (`Rasm yuklashda xatolik bo'ldi`), false)
+  }
+}
 
-const createImageUploadMiddleware = (destinationFolder, maxSizeMB) => {
-    // Fayllarni saqlash uchun konfiguratsiya
-    const storage = multer.diskStorage({
-      destination: (req, file, cb) => {
-        cb(null, destinationFolder);
-      },
-      filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`);
-      }
-    });
-  
-    // Fayl filtri
-    const fileFilter = (req, file, cb) => {
-      const allowedMimeTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-      if (allowedMimeTypes.includes(file.mimetype)) {
-        cb(null, true);
-      } else {
-        cb(new Error('Yuklanadigan fayl rasm bo\'lishi kerak!'), false);
-      }
-    };
-  
-    // Multer sozlamalari
-    return multer({
-      storage: storage,
-      limits: {
-        fileSize: maxSizeMB * 1024 * 1024 // MB dan byte ga o'girish
-      },
-      fileFilter: fileFilter
-    });
-  };
-  
-
-// Rasmlarni yuklash uchun middleware
-const upload = createImageUploadMiddleware('uploads/', 5);
+const upload = multer({storage: stroge,
+  limits: {
+    fileSize: 5*1024*1024
+  },
+  fileFilter: fileFilter
+});
 
 
 
 
-module.exports = { verifyToken, checkAdmin, upload };
+
+module.exports = { verifyToken, checkAdmin, upload  };

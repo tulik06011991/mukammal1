@@ -1,4 +1,5 @@
 const pool = require('../db');
+const path  = require("path")
 
 
 const AllProducts = async (req, res) => {
@@ -11,26 +12,7 @@ const AllProducts = async (req, res) => {
     }
 };
 
-const PostProducts = async  (req, res) => {
-    const { name, description, price } = req.body;
-    const filePath = req.file.path;
-    const fileName = req.file.filename;
-    
-    if (!name || !description || typeof price !== 'number') {
-        return res.status(400).send('Invalid input');
-    }
 
-    try {
-        const product = await pool.query(
-            'INSERT INTO products(name, description, price) VALUES ($1, $2, $3) RETURNING *',
-            [name, description, price]
-        );
-        res.status(201).json(product.rows[0]);
-    } catch (error) {
-        console.error('Error adding product:', error);
-        res.status(500).send('Error adding product');
-    }
-};
 
 const DeleteProduct = async (req, res) => {
     const { id } = req.params;
@@ -76,7 +58,7 @@ const UpdateProduct = async (req, res) => {
 
 module.exports = {
     AllProducts,
-    PostProducts,
+    
     DeleteProduct,
     UpdateProduct
 };
