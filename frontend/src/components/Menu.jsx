@@ -37,7 +37,7 @@ const Menu = () => {
                                 </div>
                                 <div className=" flex justify-center items-center mb-4">
                                     <button
-                                        type="button" className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700'
+                                        type="button" className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700 transform hover:scale-90 transition duration-300 ease-in-out'
                                         // className={`inline-block rounded-full px-3 py-1 text-sm font-semibold mx-auto ${
                                         //     isButtonChecked ? 'bg-gray-900 text-gray-200' : 'bg-gray-200 text-gray-700'
                                         // }`}
