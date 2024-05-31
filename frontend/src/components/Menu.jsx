@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useSidebar } from './SidebarContext';
+
 
 const Menu = () => {
   
@@ -10,7 +10,6 @@ const Menu = () => {
 
 
 
-const { closeSidebar } = useSidebar();
 
 const handleCardClick = () => {
     // Click bosilganida sidebar yopiladi

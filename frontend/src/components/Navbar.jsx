@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSidebar } from './SidebarContext';
+
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const { toggleSidebari } = useSidebar();
+    
 
    
 
