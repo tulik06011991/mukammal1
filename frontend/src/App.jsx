@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import About from './components/About';
+import PostProducts from './Admin/PostProducts';
 import ProductContextProvider from './components/context/ProductContextProvider';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Menu />} />
                     <Route path='/about' element={<About />} />
+                    <Route path ='/postProducts' element ={<PostProducts/>}/>
                 </Routes>
                 <Footer />
             </ProductContextProvider>
