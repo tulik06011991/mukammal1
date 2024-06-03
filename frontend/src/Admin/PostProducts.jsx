@@ -15,6 +15,7 @@ const GetProducts = () => {
 const handleSubmit = async (e) =>{
   e.preventDefault();
   // const response = axios.post()
+  console.log(e)
 }
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md" onClick={handleClick} >
