@@ -23,21 +23,19 @@ const GetProducts = () => {
           />
         </div>
         <div>
-          <label htmlFor="text3" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text 3</label>
-          <input
-            id="text3"
-            type="text"
-            className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
-            placeholder="Enter text 3"
-          />
+          <label htmlFor="text3" className="block mb-2 text-sm font-medium rounded-lg text-gray-900 dark:text-white">Tanglang</label>
+         <select className="w-full mb-2 py-2 text-sm bg-gray-200 font-medium  text-gray-900 dark:text-white">
+          <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">oyoq </option>
+          <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kitob</option>
+         </select>
         </div>
         <div>
-          <label htmlFor="file_input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload File</label>
+          <label htmlFor="file_input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rasm yuklash </label>
           <input
             id="file_input"
             type="file"
-            className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
-          />
+           className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
+          /> 
         </div>
         <button
           type="submit"
