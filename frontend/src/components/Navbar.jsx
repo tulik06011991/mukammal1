@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useContext } from 'react';
+import productContext from './context/ProductContext';
 
 const Navbar = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    
-
-   
+    const { isSidebarOpen, setIsSidebarOpen } = useContext(productContext);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-
-  
-
-    const handleButtonClick = () => {
-        setIsButtonChecked(!isButtonChecked);
-    };
-
-  
 
     return (
         <div className="flex">
@@ -94,7 +83,6 @@ const Navbar = () => {
                         </a>
                     </div>
                 </nav>
-               
             </div>
         </div>
     );
