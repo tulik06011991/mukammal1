@@ -9,6 +9,7 @@ const Menu = () => {
 
     const handleClick = () => {
         setIsSidebarOpen(false);
+        
     };
 
     useEffect(() => {

@@ -1,8 +1,17 @@
-import React from 'react';
+import { useContext } from 'react';
+import React from  'react';
+import productContext from '../components/context/ProductContext';
 
 const GetProducts = () => {
+  const { setIsSidebarOpen } = useContext(productContext);
+
+  
+  const handleClick = () => {
+    setIsSidebarOpen(false);
+    
+}; 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md" onClick={handleClick} >
       <form className="space-y-6">
         <div>
           <label htmlFor="text1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text 1</label>
