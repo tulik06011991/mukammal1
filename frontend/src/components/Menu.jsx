@@ -48,7 +48,7 @@ const Menu = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No data available</p>
+                    <p>Yuklanmoqda ...</p>
                 )}
             </main>
         </div>
