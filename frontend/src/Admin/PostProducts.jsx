@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import React from  'react';
 import productContext from '../components/context/ProductContext';
+import axios from 'axios';
 
 const GetProducts = () => {
   const { setIsSidebarOpen } = useContext(productContext);
@@ -10,9 +11,14 @@ const GetProducts = () => {
     setIsSidebarOpen(false);
     
 }; 
+
+const handleSubmit = async (e) =>{
+  e.preventDefault();
+  // const response = axios.post()
+}
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md" onClick={handleClick} >
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="text1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text 1</label>
           <input
