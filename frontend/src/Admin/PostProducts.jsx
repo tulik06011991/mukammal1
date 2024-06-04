@@ -41,8 +41,11 @@ const handleSubmit = async (e) =>{
         <div>
           <label htmlFor="text3" className="block mb-2 text-sm font-medium rounded-lg text-gray-900 dark:text-white">Tanglang</label>
          <select className="w-full mb-2 py-2 text-sm bg-gray-200 font-medium  text-gray-900 dark:text-white">
-          <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">oyoq </option>
+          <option value='' disabled className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanglang</option>
+          <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">texnika</option>
           <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kitob</option>
+          <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">oyoq kiyim</option>
+
          </select>
         </div>
         <div>
