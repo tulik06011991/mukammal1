@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import React from 'react';
 import productContext from '../components/context/ProductContext';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const GetProducts = () => {
   const { setIsSidebarOpen } = useContext(productContext);
@@ -10,6 +11,8 @@ const GetProducts = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [productCategory, setProductCategory] = useState('');
   const [productImage, setProductImage] = useState(null);
+  const items = useSelector((state) =>state.cart)
+        console.log(items)
 
   const handleClick = () => {
     setIsSidebarOpen(false);
@@ -40,7 +43,7 @@ const GetProducts = () => {
     formData.append('productImage', productImage);
 
     try {
-      const response = await axios.post('/api/products', formData, {
+      const response = await axios.post('http://localhost:300/postProducts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -1,5 +1,7 @@
 const pool = require('../db');
-const path  = require("path")
+const path  = require("path");
+
+
 
 
 const AllProducts = async (req, res) => {

@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import productContext from './context/ProductContext';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
     const { isSidebarOpen, setIsSidebarOpen } = useContext(productContext);
-
+        const items = useSelector((state) =>state.cart)
+        console.log(items)
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -20,24 +24,24 @@ const Navbar = () => {
                     <h2 className="text-2xl font-semibold">Sidebar</h2>
                     <ul>
                         <li className="mt-4">
-                            <a href="/" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-700">
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li className="mt-4">
-                            <a href="/about" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/about" className="block py-2 px-4 rounded hover:bg-gray-700">
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li className="mt-4">
-                            <a href="/" className="block py-2 px-4 rounded hover:bg-gray-700">
-                                Services
-                            </a>
+                            <Link to="/service" className="block py-2 px-4 rounded hover:bg-gray-700">
+                                Services : {items.length}
+                            </Link>
                         </li>
                         <li className="mt-4">
-                            <a href="/" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/contact" className="block py-2 px-4 rounded hover:bg-gray-700">
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -69,18 +73,18 @@ const Navbar = () => {
                         </button>
                     </div>
                     <div className="hidden md:flex space-x-8">
-                        <a href="/" className="text-gray-700 hover:text-gray-900 ">
+                        <Link to="/" className="text-gray-700 hover:text-gray-900 ">
                             Home
-                        </a>
-                        <a href="/about" className="text-gray-700 hover:text-gray-900 ">
+                        </Link>
+                        <Link to="/about" className="text-gray-700 hover:text-gray-900 ">
                             About
-                        </a>
-                        <a href="/" className="text-gray-700 hover:text-gray-900 ">
-                            Services
-                        </a>
-                        <a href="/" className="text-gray-700 hover:text-gray-900 ">
+                        </Link>
+                        <Link to="/service" className="text-gray-700 hover:text-gray-900 ">
+                            Services: {items.length}
+                        </Link>
+                        <Link to="/contact" className="text-gray-700 hover:text-gray-900 ">
                             Contact
-                        </a>
+                        </Link>
                     </div>
                 </nav>
             </div>

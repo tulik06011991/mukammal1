@@ -1,16 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import productContext from './context/ProductContext';
+import { add } from './Redux/CartSlice';
+import { useDispatch } from 'react-redux';
+
+
 
 const Menu = () => {
     const [isButtonChecked, setIsButtonChecked] = useState(false);
     const [data, setData] = useState([]);
     const { setIsSidebarOpen } = useContext(productContext);
+    const [products, setProducts] = useState([])
+    const dispatch = useDispatch();
+
+
 
     const handleClick = () => {
         setIsSidebarOpen(false);
         
     };
+
+    const handleAdd =(product) =>{
+        localStorage.setItem('mahsulot', product)
+        dispatch(add(product))
+    }
+
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,7 +57,7 @@ const Menu = () => {
                             <div className="flex justify-center items-center mb-4">
                                 <button
                                     type="button"
-                                    className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700'
+                                    className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700' onClick={() =>handleAdd(d)}
                                 >
                                     Add to Cart
                                 </button>
