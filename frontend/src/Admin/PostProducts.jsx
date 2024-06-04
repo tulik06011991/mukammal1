@@ -1,16 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import React from  'react';
 import productContext from '../components/context/ProductContext';
 import axios from 'axios';
 
 const GetProducts = () => {
   const { setIsSidebarOpen } = useContext(productContext);
+  const [productName, setProductName] = useState('');
+  const [productDescription, setProductDescription] = useState('');
+  const [productPrice, setProductPrice] = useState({typeof: Number})
 
   
   const handleClick = () => {
     setIsSidebarOpen(false);
     
 }; 
+
+const handleChange = (e) =>{
+
+}
 
 const handleSubmit = async (e) =>{
   e.preventDefault();
@@ -26,7 +33,7 @@ const handleSubmit = async (e) =>{
             id="text1"
             type="text"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
-            placeholder="Enter text 1"
+            placeholder="Enter text 1" onChange={handleChange}
           />
         </div>
         <div>
@@ -35,17 +42,17 @@ const handleSubmit = async (e) =>{
             id="text2"
             type="text"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
-            placeholder="Enter text 2"
+            placeholder="Enter text 2" onChange={handleChange}
           />
         </div>
         <div>
           <label htmlFor="text3" className="block mb-2 text-sm font-medium rounded-lg text-gray-900 dark:text-white">Tanglang</label>
-         <select className="w-full mb-2 py-2 text-sm bg-gray-200 font-medium  text-gray-900 dark:text-white">
+         <select className="w-full mb-2 py-2 text-sm bg-gray-200 font-medium  text-gray-900 dark:text-white" onChange={handleChange}>
           <option value='' disabled className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanglang</option>
           <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">texnika</option>
           <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kitob</option>
           <option className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">oyoq kiyim</option>
-
+          
          </select>
         </div>
         <div>
@@ -53,7 +60,7 @@ const handleSubmit = async (e) =>{
           <input
             id="file_input"
             type="file"
-           className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
+           className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400" onChange={handleChange}
           /> 
         </div>
         <button
