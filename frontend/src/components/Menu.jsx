@@ -49,7 +49,7 @@ const Menu = () => {
                             <div className="flex justify-center items-center mb-4">
                                 <button
                                     type="button"
-                                    className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700' onClick={() => handleAdd(d)}
+                                    className='rounded-full mx-auto px-3 py-1 cursor-pointer text-sm font-semibold bg-gray-500 hover:bg-gray-700 active:scale-95' onClick={() => handleAdd(d)}
                                 >
                                     Add to Cart
                                 </button>

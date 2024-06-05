@@ -24,7 +24,7 @@ const Service = () => {
                             <div className="text-center">
                                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                                 <p className="text-gray-700 mb-2">${item.price}</p>
-                                <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">O'chirish</button>
+                                <button className=" active:scale-95 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">O'chirish</button>
                             </div>
                         </div>
                     ))
@@ -32,7 +32,7 @@ const Service = () => {
                     <p className="text-center text-gray-600">Savatcha bo'sh</p>
                 )}
             </div>
-            <button className=' btn btn-outline-primary mt-5 w-full'>sotib olish</button>
+            <button className=' btn btn-outline-primary mt-5 w-full active:scale-95'>sotib olish</button>
         </div>
     );
 };
