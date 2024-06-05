@@ -1,16 +1,22 @@
 // Service.jsx
 
-import React from 'react';
+import React, {useContext} from 'react';
 import { useSelector } from 'react-redux';
+import productContext from './context/ProductContext';
 
 const Service = () => {
     // Redux do'konidan malumotlarni olish
+    const { setIsSidebarOpen } = useContext(productContext);
     const cartItems = useSelector((state) => state.cart);
+    const handleClick = () => {
+        setIsSidebarOpen(false);
+        
+    }; 
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8" onClick={handleClick}>
             <h1 className="text-3xl font-bold text-center mb-8">Istemol savatchasi</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div key={item.id} className="bg-white shadow-md rounded-md p-4">
@@ -26,6 +32,7 @@ const Service = () => {
                     <p className="text-center text-gray-600">Savatcha bo'sh</p>
                 )}
             </div>
+            <button className=' btn btn-outline-primary mt-5 w-full'>sotib olish</button>
         </div>
     );
 };
