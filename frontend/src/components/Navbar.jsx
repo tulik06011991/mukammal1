@@ -39,7 +39,7 @@ const Navbar = () => {
                         </li>
                         <li className="mt-4">
                             <Link to="/service" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
-                                Services : {items.length}
+                                Services : <span className='bg-green-500 py-2 px-3.5 rounded-full font-bold'>{items.length}</span>
                             </Link>
                         </li>
                         <li className="mt-4">
@@ -84,7 +84,7 @@ const Navbar = () => {
                             About
                         </Link>
                         <Link to="/service" className="text-gray-700 hover:text-gray-900 ">
-                            Services: {items.length}
+                            Services: <span className='bg-green-500 py-2 px-3.5 rounded-full font-bold'> {items.length}</span>
                         </Link>
                         <Link to="/contact" className="text-gray-700 hover:text-gray-900 ">
                             Contact
