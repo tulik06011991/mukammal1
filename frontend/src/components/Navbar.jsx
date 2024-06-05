@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
+   
     const { isSidebarOpen, setIsSidebarOpen } = useContext(productContext);
         const items = useSelector((state) =>state.cart)
         console.log(items)
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
+    };
+    const handleClick = () => {
+        setIsSidebarOpen(false);
     };
 
     return (
@@ -24,22 +28,22 @@ const Navbar = () => {
                     <h2 className="text-2xl font-semibold">Sidebar</h2>
                     <ul>
                         <li className="mt-4">
-                            <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
                                 Home
                             </Link>
                         </li>
                         <li className="mt-4">
-                            <Link to="/about" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/about" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
                                 About
                             </Link>
                         </li>
                         <li className="mt-4">
-                            <Link to="/service" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/service" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
                                 Services : {items.length}
                             </Link>
                         </li>
                         <li className="mt-4">
-                            <Link to="/contact" className="block py-2 px-4 rounded hover:bg-gray-700">
+                            <Link to="/contact" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
                                 Contact
                             </Link>
                         </li>
