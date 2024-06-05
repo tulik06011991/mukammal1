@@ -1,15 +1,33 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux';
+import productContext from './context/ProductContext';
 
 const Cart = () => {
+  const { setIsSidebarOpen } = useContext(productContext);
     const cartItems = useSelector((state) => state.cart);
+  console.log(cartItems)
+    const handleClick = () => {
+      setIsSidebarOpen(false);
+      
+  }; 
+    const handleSubmit  =async (e) =>{
+      e.preventDefault()
+      try {
+          const response = await axios.post('http://localhost:3000/', cartItems)
+          setData(response.data)
+      } catch (error) {
+          console.log(error)
+          
+      }
+  }
+
   return (
     <div>
     
-<div className="max-w-2xl mx-auto bg-white p-16">
+<div className="max-w-2xl mx-auto bg-white p-16" onClick={handleClick}>
 
-	<form>
+	<form onSubmit={handleSubmit}>
     <div className="grid gap-6 mb-6 lg:grid-cols-2">
         <div>
             <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First name</label>

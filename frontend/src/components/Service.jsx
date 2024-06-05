@@ -15,17 +15,7 @@ const Service = () => {
         setIsSidebarOpen(false);
         
     }; 
-    const handleSubmit  =async (e) =>{
-        e.preventDefault()
-        try {
-            const response = await axios.post('http://localhost:3000/', cartItems)
-            setData(response.data)
-        } catch (error) {
-            console.log(error)
-            
-        }
-    }
-
+  
 
     return (
         <div className="container mx-auto px-4 py-8" onClick={handleClick}>
