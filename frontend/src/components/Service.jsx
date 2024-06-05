@@ -41,10 +41,12 @@ const Service = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="text-center text-gray-600">Savatcha bo'sh</p>
+                    <p className="text-center text-xl font-bold w-full mx-auto text-gray-600 my-12">Savatcha bo'sh</p>
                 )}
-            </div>
+            </div>{
+                cartItems.length ===0 ? " " :
             <Link to = '/carta'><button  className=' btn btn-outline-primary mt-5 w-full active:scale-95'>sotib olmoq</button></Link>
+            }
 
 
     
