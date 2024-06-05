@@ -9,28 +9,26 @@ const GetProducts = () => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState(0);
-  const [productCategory, setProductCategory] = useState('');
   const [productImage, setProductImage] = useState(null);
-  const items = useSelector((state) =>state.cart)
-        console.log(items)
+  const items = useSelector((state) => state.cart);
+  
+  console.log(items);
 
   const handleClick = () => {
     setIsSidebarOpen(false);
   };
 
   const handleChange = (e) => {
-    const { id, value, files } = e.target;
-    if (id === 'file_input') {
+    const { name, value, files } = e.target;
+    if (name === 'productImage') {
       setProductImage(files[0]);
-    } else if (id === 'text1') {
+    } else if (name === 'productName') {
       setProductName(value);
-    } else if (id === 'text2') {
+    } else if (name === 'productDescription') {
       setProductDescription(value);
-    } else if (id === 'product_price') {
+    } else if (name === 'productPrice') {
       setProductPrice(value);
-    } else if (e.target.tagName === 'SELECT') {
-      setProductCategory(value);
-    }
+    } 
   };
 
   const handleSubmit = async (e) => {
@@ -39,11 +37,10 @@ const GetProducts = () => {
     formData.append('productName', productName);
     formData.append('productDescription', productDescription);
     formData.append('productPrice', productPrice);
-    formData.append('productCategory', productCategory);
     formData.append('productImage', productImage);
 
     try {
-      const response = await axios.post('http://localhost:300/postProducts', formData, {
+      const response = await axios.post('http://localhost:3000/postProducts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -58,9 +55,10 @@ const GetProducts = () => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md" onClick={handleClick}>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="text1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+          <label htmlFor="productName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
           <input
-            id="text1"
+            id="productName"
+            name="productName"
             type="text"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
             placeholder="Enter product name"
@@ -69,9 +67,10 @@ const GetProducts = () => {
           />
         </div>
         <div>
-          <label htmlFor="text2" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+          <label htmlFor="productDescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
           <input
-            id="text2"
+            id="productDescription"
+            name="productDescription"
             type="text"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
             placeholder="Enter product description"
@@ -80,9 +79,10 @@ const GetProducts = () => {
           />
         </div>
         <div>
-          <label htmlFor="product_price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
+          <label htmlFor="productPrice" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
           <input
-            id="product_price"
+            id="productPrice"
+            name="productPrice"
             type="number"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
             placeholder="Enter product price"
@@ -91,23 +91,10 @@ const GetProducts = () => {
           />
         </div>
         <div>
-          <label htmlFor="product_category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-          <select
-            id="product_category"
-            className="w-full mb-2 py-2 text-sm bg-gray-200 font-medium text-gray-900 dark:text-white"
-            value={productCategory}
-            onChange={handleChange}
-          >
-            <option value='' disabled>Select category</option>
-            <option value='texnika'>Texnika</option>
-            <option value='kitob'>Kitob</option>
-            <option value='oyoq kiyim'>Oyoq kiyim</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="file_input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image</label>
+          <label htmlFor="productImage" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image</label>
           <input
-            id="file_input"
+            id="productImage"
+            name="productImage"
             type="file"
             className="block w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-400"
             onChange={handleChange}
