@@ -5,16 +5,23 @@ import { useSelector } from 'react-redux';
 import productContext from './context/ProductContext';
 import axios from 'axios'
 import {useNavigate, Link} from 'react-router-dom'
+import { remove } from './Redux/CartSlice';
+import { useDispatch } from 'react-redux';
 
 const Service = () => {
 
     const [Data,  setData] = useState([])
     const { setIsSidebarOpen } = useContext(productContext);
+    const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart);
     const handleClick = () => {
         setIsSidebarOpen(false);
         
     }; 
+    const handleRemove = (product) => {
+        localStorage.setItem('mahsulot', product);
+        dispatch(remove(product));
+    };
   
 
     return (
@@ -29,7 +36,7 @@ const Service = () => {
                             <div className="text-center">
                                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                                 <p className="text-gray-700 mb-2">${item.price}</p>
-                                <button className=" active:scale-95 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">O'chirish</button>
+                                <button onClick={() =>handleRemove(item.id)} className=" active:scale-95 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">O'chirish</button>
                             </div>
                         </div>
                     ))
