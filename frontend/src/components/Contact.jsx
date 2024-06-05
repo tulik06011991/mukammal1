@@ -31,7 +31,7 @@ const Contact = () => {
             className='w-full rounded px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 focus:outline-none focus:border-blue-400 mb-4'
             placeholder='Message'
           ></textarea>
-          <button type="submit" className='w-full py-2 rounded bg-blue-500 text-white font-medium hover:bg-blue-600 transition duration-200'>Submit</button>
+          <button type="submit" className='w-full py-2 active:scale-95 rounded bg-blue-500 text-white font-medium hover:bg-blue-600 transition duration-200'>Submit</button>
         </div>
       </div>
     </div>
