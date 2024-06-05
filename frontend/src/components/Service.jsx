@@ -41,7 +41,7 @@ const Service = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="text-center text-xl font-bold w-full mx-auto text-gray-600 my-12">Savatcha bo'sh</p>
+                    <p className="text-center text-xl font-bold items-center w-full mx-auto text-gray-600 my-12">Savatcha bo'sh</p>
                 )}
             </div>{
                 cartItems.length ===0 ? " " :
