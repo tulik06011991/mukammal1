@@ -1,21 +1,36 @@
 // Service.jsx
 
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { useSelector } from 'react-redux';
 import productContext from './context/ProductContext';
+import axios from 'axios'
+import {useNavigate, Link} from 'react-router-dom'
 
 const Service = () => {
-    // Redux do'konidan malumotlarni olish
+
+    const [Data,  setData] = useState([])
     const { setIsSidebarOpen } = useContext(productContext);
     const cartItems = useSelector((state) => state.cart);
     const handleClick = () => {
         setIsSidebarOpen(false);
         
     }; 
+    const handleSubmit  =async (e) =>{
+        e.preventDefault()
+        try {
+            const response = await axios.post('http://localhost:3000/', cartItems)
+            setData(response.data)
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
+
 
     return (
         <div className="container mx-auto px-4 py-8" onClick={handleClick}>
             <h1 className="text-3xl font-bold text-center mb-8">Istemol savatchasi</h1>
+            
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => (
@@ -32,7 +47,10 @@ const Service = () => {
                     <p className="text-center text-gray-600">Savatcha bo'sh</p>
                 )}
             </div>
-            <button className=' btn btn-outline-primary mt-5 w-full active:scale-95'>sotib olish</button>
+            <Link to = '/carta'><button  className=' btn btn-outline-primary mt-5 w-full active:scale-95'>sotib olmoq</button></Link>
+
+
+    
         </div>
     );
 };

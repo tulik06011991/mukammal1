@@ -10,6 +10,7 @@ import Service from './components/Service';
 
 import ProductContextProvider from './components/context/ProductContextProvider';
 import UsersAllData from './Admin/UsersAllData';
+import Cart from './components/Cart';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                     <Route path ='/service' element ={<Service/>}/>
                     <Route path ='/contact' element ={<Contact/>}/>
                     <Route path='/usersAlldata' element = {<UsersAllData/>}/>
+                    <Route path='/carta' element = {<Cart/>}/>
                 </Routes>
                 <Footer />
               
