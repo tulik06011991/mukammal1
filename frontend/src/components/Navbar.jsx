@@ -29,7 +29,7 @@ const Navbar = () => {
                     <ul>
                         <li className="mt-4">
                             <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-700" onClick={handleClick}>
-                                Home
+                                Mahsulotlar
                             </Link>
                         </li>
                         <li className="mt-4">
@@ -78,7 +78,7 @@ const Navbar = () => {
                     </div>
                     <div className="hidden md:flex space-x-8">
                         <Link to="/" className="text-gray-700 hover:text-gray-900 ">
-                            Home
+                            Mahsulotlar
                         </Link>
                         <Link to="/about" className="text-gray-700 hover:text-gray-900 ">
                             About

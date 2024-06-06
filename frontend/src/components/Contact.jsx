@@ -20,11 +20,11 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValid) {
+    if (isValid && phoneNumber.length !== 0) {
       // Form submission logic
-      alert('Form submitted');
+      alert(`Habar jo'natildi`);
     } else {
-      alert('Invalid phone number');
+      alert('iltimos telefon raqamni kiriting');
     }
   };
 
