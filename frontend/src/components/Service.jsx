@@ -24,7 +24,7 @@ const Service = () => {
         <div className="container mx-auto px-4 py-12" onClick={handleClick}>
             <h1 className="text-3xl font-bold text-center mb-8">Istemol savatchasi</h1>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div key={item.id} className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between">
