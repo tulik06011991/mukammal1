@@ -4,8 +4,12 @@ import { useSelector } from 'react-redux';
 import productContext from './context/ProductContext';
 
 const Cart = () => {
-  const { setIsSidebarOpen } = useContext(productContext);
   const cartItems = useSelector((state) => state.cart);
+  if(cartItems.length ===0){
+    window.location.href="/"
+  }
+  const { setIsSidebarOpen } = useContext(productContext);
+  const [holat, setholat] = useState(true)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,7 +19,7 @@ const Cart = () => {
     expiryDate: '',  // Expiry date ni ham kiritishingiz kerak
   });
   const [Data, setData] = useState([]);
-  
+
   console.log(cartItems);
 
   const handleClick = () => {
@@ -28,27 +32,31 @@ const Cart = () => {
       ...formData,
       [name]: value,
     });
+    if (formData.cardNumber < 0 ||  formData.cardNumber.length < 16 || formData.cardNumber.length >16 ) {
+      setholat(false);
+  }
+  
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const payload = {
-            ...formData,
-            productId: cartItems.map(item => item.id),
-            quantity: cartItems.length
-        };
+      const payload = {
+        ...formData,
+        productId: cartItems.map(item => item.id),
+        quantity: cartItems.length
+      };
 
-        console.log(payload);
+      console.log(payload);
 
-        const response = await axios.post('http://localhost:3000/submitCart', payload);
-        setData(response.data);
+      const response = await axios.post('http://localhost:3000/submitCart', payload);
+      setData(response.data);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-};
+  };
 
-  
+
   console.log(Data);
 
   return (
@@ -115,18 +123,39 @@ const Cart = () => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="cardNumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Cart Number
-            </label>
-            <input
-              type="number"
-              id="cardNumber"
-              name="cardNumber"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="123456789"
-              required
-              onChange={handleChange}
-            />
+            {holat ? (
+              <>
+              <label htmlFor="cardNumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Cart Number
+              </label>
+              <input
+                type="number"
+                id="cardNumber"
+                name="cardNumber"
+                className= 'border border border-gray-300 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                
+                placeholder="123456789"
+                required
+                />
+                
+                onChange={handleChange}
+                </>
+
+            ): (
+              <>
+              <label htmlFor="cardNumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Cart Number
+              </label>
+              <input
+                type="number"
+                id="cardNumber"
+                name="cardNumber"
+                className= 'border border-red-500 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                
+                placeholder="123456789"
+                required/>
+              </>
+            )}
           </div>
           <div className="mb-6">
             <label htmlFor="expiryDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">

@@ -28,7 +28,7 @@ const Service = () => {
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div key={item.id} className="bg-white shadow-md rounded-md p-4 flex flex-col justify-between">
-                            <img src={item.image} alt={item.title} className="w-full h-40 object-cover mb-4 rounded-md" />
+                            <img src={item.image} alt={item.title} className="w-full h-50 object-cover mb-4 rounded-md" />
                             <div className="text-center flex-grow">
                                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                                 <p className="text-gray-700 mb-4">${item.price}</p>
