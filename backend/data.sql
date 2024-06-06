@@ -14,3 +14,11 @@ CREATE TABLE category (
     category VARCHAR(250) NOT NULL
 
 );
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL,
+  FOREIGN KEY (customer_id) REFERENCES customers(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);

@@ -12,7 +12,7 @@ const Cart = () => {
     phone: '',
     email: '',
     cardNumber: '',
-    expiryDate: '',
+    expiryDate: '',  // Expiry date ni ham kiritishingiz kerak
   });
   const [Data, setData] = useState([]);
   
@@ -33,17 +33,21 @@ const Cart = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const payload = {
-        ...formData,
-        cartItems,
-      };
+        const payload = {
+            ...formData,
+            productId: cartItems.map(item => item.id),
+            quantity: cartItems.length
+        };
 
-      const response = await axios.post('http://localhost:3000/submitCart', payload);
-      setData(response.data);
+        console.log(payload);
+
+        const response = await axios.post('http://localhost:3000/submitCart', payload);
+        setData(response.data);
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
-  };
+};
+
   
   console.log(Data);
 
