@@ -17,7 +17,6 @@ pool.connect((err, client, release) => {
     if (err) {
       return console.log('Databazaga ulanmadi', err.stack);
     }
-    console.log('Databaza ishladi');
     release();
   });
 

@@ -19,7 +19,6 @@ router.post('/postProducts', upload.single('productImage'), async (req, res) => 
 
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error('Error saving product', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -35,8 +34,7 @@ router.post('/submitCart', async (req, res) => {
     client.release();
     
     res.json({ message: 'Cart submitted successfully' });
-  } catch (error) {
-    console.error(error);
+  } catch (error) {    
     res.status(500).json({ message: 'Server error' });
   }
 });
